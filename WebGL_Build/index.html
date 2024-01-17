@@ -14,7 +14,6 @@
     <div id="label-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    <script src = "https://mori1205.github.io/obstacleGame/WebGL_Build/index.html"></script>
     
 
   </head>
@@ -26,7 +25,7 @@
     <button id="start" onclick="init()">Start</button>
 
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=800 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -113,7 +112,7 @@
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
         canvas.style.width = "960px";
-        canvas.style.height = "800px";
+        canvas.style.height = "600px";
       }
 
       loadingBar.style.display = "block";
@@ -140,11 +139,6 @@
       document.body.appendChild(script);
       // *********************************************************************************
 
-      function onClick() { // UnityのPlayer GameObjectにアタッチされたスクリプトのStartJumpメソッドを呼び出す
-        gameInstance.SendMessage('unitychan_dynamic', 'PerformJump');
-      }
-
-      // TM実装
       let model, webcam, labelContainer, maxPredictions;
       var motor01;
       var motor02;
@@ -153,7 +147,7 @@
       var count = 0; //一定時間に目を開いた回数
       let average = 0; //目を開いた確率
       // var data = []; //openクラスの値を入れる
-      var obniz = new Obniz("");
+      var obniz = new Obniz("4950-9121");
       var isMoterMoving = false; //モーターを動かさない
       var go_sec_Count = 0;
 
@@ -162,6 +156,7 @@
       let currentIndex = 0; // 現在のインデックス
       var go_sec = Math.floor(Math.random() * (21 - 11) + 10) * 1000; //秒数
 
+   
       obniz.onconnect = async function () {
         button = obniz.wired("Button", { signal: 0, gnd: 2 });
         motor01 = obniz.wired("DCMotor", { forward: 4, back: 6 });
@@ -171,9 +166,14 @@
 
         button.onchange = function (pressed) {
           if (pressed) {
-            gameInstance.SendMessage('unitychan_dynamic', 'PerformJump');
+           
+            gameInstance.SendMessage('Player', 'PerformJump');
+          } else {
+            
+            gameInstance.SendMessage('Player', 'StopJump');
           }
         };
+
         obniz.display.clear();
         obniz.display.print("patipatiDrop");
       };
@@ -186,14 +186,12 @@
 
       window.onload = function() {
         setTimeout(init, 10000);
+        
       };
 
       // Load the image model and setup the webcam
       async function init() {
-        // // カスケードレイヤー
-        // var contentDiv = document.getElementById('contentDiv');
-        // contentDiv.classList.toggle('hidden');
-        // contentDiv.classList.toggle('visible');
+        // console.log("init呼び出し"); 
 
         const modelURL = URL_ + "model.json";
         const metadataURL = URL_ + "metadata.json";
@@ -213,7 +211,7 @@
         window.requestAnimationFrame(loop);
 
         // append elements to the DOM
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        // document.getElementById("webcam-container").appendChild(webcam.canvas);
         labelContainer = document.getElementById("label-container");
         for (let i = 0; i < maxPredictions; i++) { // and class labels
           labelContainer.appendChild(document.createElement("div"));
@@ -234,7 +232,7 @@
           if (go_sec_Count == 0) {
             setTimeout(function () {
               if (average >= 0.99) {
-                console.log("eyeditection 前");
+                // console.log("eyeditection 前");
                 eyedetection();
                 average = 0;
               } else {
@@ -297,7 +295,7 @@
             motor01.stop();
             motor02.stop();
             webcam.stop();
-            // isMoterMoving = false;
+            isMoterMoving = false;
           }, 1800);
         }
       }
