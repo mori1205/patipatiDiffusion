@@ -123,6 +123,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &14958350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4063893259298848757, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+  m_PrefabInstance: {fileID: 8915412490499538707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &14958353 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 586761634915024255, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+  m_PrefabInstance: {fileID: 8915412490499538707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &14958354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14958350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f5767cd0d6041448a0980f984aa96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 14958353}
+  aspectVec: {x: 800, y: 480}
 --- !u!1001 &57463594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5660,6 +5684,22 @@ PrefabInstance:
       propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 586761634915024255, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 586761634915024255, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.046397686
+      objectReference: {fileID: 0}
+    - target: {fileID: 586761634915024255, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 586761634915024255, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.9072046
+      objectReference: {fileID: 0}
     - target: {fileID: 606314851557819309, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
       propertyPath: moveSpeed
       value: 3
@@ -5739,6 +5779,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1337866784162718680, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1810657621}
+    - targetCorrespondingSourceObject: {fileID: 4063893259298848757, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 14958354}
   m_SourcePrefab: {fileID: 100100000, guid: 4bcd9cc525d794cd88cfa341a8b6c59d, type: 3}
 --- !u!4 &8921718448235972620 stripped
 Transform:
