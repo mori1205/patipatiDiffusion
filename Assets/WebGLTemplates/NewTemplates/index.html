@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | {{{ PRODUCT_NAME }}}</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/starter-sample.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/obniz@3.22.0/obniz.js" crossorigin="anonymous"></script>
+    <div id="webcam-container"></div>
+    <div id="label-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    
+
+#if SHOW_DIAGNOSTICS
+    <link rel="stylesheet" href="<<<TemplateData/diagnostics.css>>>">
+    <script src="<<<TemplateData/diagnostics.js>>>"></script>
+#endif
+  </head>
+  <body>
+    <h3>TM2Unity</h3>
+    
+    <input type="button" value="ボタン" onclick="onClick()" />
+    
+    <button id="start" onclick="init()">Start</button>
+
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+#if SHOW_DIAGNOSTICS
+        <img id="diagnostics-icon" src="TemplateData/webmemd-icon.png">
+#endif
+        <div id="unity-build-title">{{{ PRODUCT_NAME }}}</div>
+      </div>
+    </div>
+    <script>
+
+// ***************************************触らない*********************************************************
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+#if SHOW_DIAGNOSTICS
+      var diagnostics_icon = document.getElementById("diagnostics-icon");
+#endif
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+      var config = {
+        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_THREADS
+        workerUrl: buildUrl + "/{{{ WORKER_FILENAME }}}",
+#endif
+#if USE_WASM
+        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+#endif
+#if MEMORY_FILENAME
+        memoryUrl: buildUrl + "/{{{ MEMORY_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+        showBanner: unityShowBanner,
+      };
+
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+#if SHOW_DIAGNOSTICS
+        // position the diagnostics icon in the corner on the canvas
+        diagnostics_icon.style.position = "fixed";
+        diagnostics_icon.style.bottom = "10px";
+        diagnostics_icon.style.right = "0px";
+        canvas.after(diagnostics_icon);
+#endif
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "{{{ WIDTH }}}px";
+        canvas.style.height = "{{{ HEIGHT }}}px";
+      }
+
+#if BACKGROUND_FILENAME
+      canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
+#endif
+      loadingBar.style.display = "block";
+
+      var gameInstance; //追加
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+#if SHOW_DIAGNOSTICS
+                diagnostics_icon.onclick = () => {
+                  unityDiagnostics.openDiagnosticsDiv(unityInstance.GetMemoryInfo);
+                };
+#endif
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+                gameInstance = unityInstance; //unityInstanceを取得
+
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+      // *********************************************************************************
+
+      let model, webcam, labelContainer, maxPredictions;
+      var motor01;
+      var motor02;
+      var button;
+      var pressed;
+      var count = 0; //一定時間に目を開いた回数
+      let average = 0; //目を開いた確率
+      // var data = []; //openクラスの値を入れる
+      var obniz = new Obniz("4950-9121");
+      var isMoterMoving = false; //モーターを動かさない
+      var go_sec_Count = 0;
+
+      const bufferSize = 20; // バッファのサイズ
+      const ringBuffer = new Array(bufferSize).fill(0);  // 初期化
+      let currentIndex = 0; // 現在のインデックス
+      var go_sec = Math.floor(Math.random() * (21 - 11) + 10) * 1000; //秒数
+
+   
+      obniz.onconnect = async function () {
+        button = obniz.wired("Button", { signal: 0, gnd: 2 });
+        motor01 = obniz.wired("DCMotor", { forward: 4, back: 6 });
+        motor02 = obniz.wired("DCMotor", { forward: 8, back: 10 });
+        motor01.power(100); // 25
+        motor02.power(100);
+
+        button.onchange = function (pressed) {
+          if (pressed) {
+           
+            gameInstance.SendMessage('Player', 'PerformJump');
+          } else {
+            
+            gameInstance.SendMessage('Player', 'StopJump');
+          }
+        };
+
+        obniz.display.clear();
+        obniz.display.print("patipatiDrop");
+      };
+
+      // More API functions here:
+      // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+      // the link to your model provided by Teachable Machine export panel
+      const URL_ = "https://teachablemachine.withgoogle.com/models/GMnymkaDG/";
+
+      window.onload = function() {
+        setTimeout(init, 10000);
+        
+      };
+
+      // Load the image model and setup the webcam
+      async function init() {
+        // console.log("init呼び出し"); 
+
+        const modelURL = URL_ + "model.json";
+        const metadataURL = URL_ + "metadata.json";
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = true; // whether to flip the webcam
+        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+        await webcam.setup(); // request access to the webcam
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // append elements to the DOM
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) { // and class labels
+          labelContainer.appendChild(document.createElement("div"));
+        }
+
+        var timer = async function () {
+          let open_sum = 0;
+
+          for (let i = 0; i < bufferSize; i++) {
+            open_sum = open_sum + ringBuffer[i];
+          }
+
+          // console.log("opensum" + open_sum);
+
+          average = open_sum / bufferSize; //平均
+
+          // console.log("平均:" + average);
+          if (go_sec_Count == 0) {
+            setTimeout(function () {
+              if (average >= 0.99) {
+                // console.log("eyeditection 前");
+                eyedetection();
+                average = 0;
+              } else {
+                average = 0;
+              }
+              go_sec_Count = 1;
+            }, go_sec);
+          }
+        }
+        setInterval(timer, 100);
+      }
+
+      async function loop() {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+      }
+
+      // run the webcam image through the image model
+      async function predict() {
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+
+        prediction[0].className = "Close";
+        prediction[1].className = "Open";
+
+        for (let i = 0; i < maxPredictions; i++) {
+          const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+          labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+
+        // get the best prediction
+        let max_id = 0;
+        let max = -1;
+
+        for (let i = 0; i < maxPredictions; i++) {
+          if (prediction[i].probability > max) {
+            max_id = i;
+            max = prediction[i].probability;
+          }
+        }
+        // ringBuffer[currentIndex] = prediction[1].probability;
+        // console("prediciont " + prediction[1].probability);
+        // console.log("addToRing");
+        addToRingBuffer(prediction[1].probability);
+      }
+
+      function addToRingBuffer(opneValue) {
+        ringBuffer[currentIndex] = opneValue;
+        currentIndex = (currentIndex + 1) % bufferSize; // リングバッファの最大サイズを超えたら0に戻る
+      }
+
+      function eyedetection() { //点眼する
+
+        if (isMoterMoving == false) {
+          motor01.forward();
+          motor02.forward();
+          isMoterMoving = true;
+          setTimeout(function () {
+            motor01.stop();
+            motor02.stop();
+            webcam.stop();
+            isMoterMoving = false;
+          }, 1800);
+        }
+      }
+
+    </script>
+  </body>
+</html>
