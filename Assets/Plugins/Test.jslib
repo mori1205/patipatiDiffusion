@@ -1,5 +1,7 @@
 mergeInto(LibraryManager.library, {
 	Hello: function () {
-    window.alert("Hello, world!");
+    var messageString = "Hello!! postmessage test!";
+    window.postMessage(messageString, "*");
+    //window.alert("Hello, world!");
   },
 });

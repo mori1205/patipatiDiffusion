@@ -300,6 +300,15 @@
         }
       }
 
+
+      window.addEventListener('message', function(event) {
+                Hello(event.data);
+              }, false);
+      function Hello(message){
+        window.alert(message);
+        console.log(message);
+        //ここに、Unityから呼び出されてやりたいことを書く。噴射したりとか。
+      }
     </script>
   </body>
 </html>
