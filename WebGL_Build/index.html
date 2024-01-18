@@ -18,7 +18,7 @@
 
   </head>
   <body>
-    <h3>TM2Unity</h3>
+    <!-- <h3>TM2Unity</h3> -->
     
     <input type="button" value="ボタン" onclick="onClick()" />
     
@@ -259,10 +259,10 @@
         prediction[0].className = "Close";
         prediction[1].className = "Open";
 
-        for (let i = 0; i < maxPredictions; i++) {
-          const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-          labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
+        // for (let i = 0; i < maxPredictions; i++) {
+        //   const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+        //   // labelContainer.childNodes[i].innerHTML = classPrediction;
+        // }
 
         // get the best prediction
         let max_id = 0;
