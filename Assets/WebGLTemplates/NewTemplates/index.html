@@ -246,7 +246,7 @@
         window.requestAnimationFrame(loop);
 
         // append elements to the DOM
-        // document.getElementById("webcam-container").appendChild(webcam.canvas);
+        document.getElementById("webcam-container").appendChild(webcam.canvas); //カメラを表示
         labelContainer = document.getElementById("label-container");
         for (let i = 0; i < maxPredictions; i++) { // and class labels
           labelContainer.appendChild(document.createElement("div"));
@@ -342,7 +342,7 @@
         StartEyeDetection(event.data);
       }, false);
 
-      function StartEyeDetection(message){
+      async function StartEyeDetection(message){
         // window.alert(message);
         console.log(message);
         //ここに、Unityから呼び出されてやりたいことを書く。噴射したりとか。
@@ -354,7 +354,8 @@
             finishLabel = 1;
           } else {
             console.log("終了前");
-            average = 0;
+            await new Promise(resolve => setTimeout(resolve, 100)); // 100ミリ秒待機
+            await predict(); // averageを更新
           }    
         } 
       }
