@@ -1,7 +1,8 @@
 mergeInto(LibraryManager.library, {
-	Hello: function () {
-    var messageString = "Hello!! postmessage test!";
+	
+
+  StartEyeDetection: function () {
+    var messageString = "StartEyeDetection!! postmessage test!";
     window.postMessage(messageString, "*");
-    //window.alert("Hello, world!");
   },
 });

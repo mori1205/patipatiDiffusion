@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/obstacleScene.unity
+    path: Assets/Scenes/obstacle_penalty.unity
     guid: 9affc731889bf4a30976d084143910cc
   m_configObjects: {}

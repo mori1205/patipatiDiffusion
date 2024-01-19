@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 public class obstacle : MonoBehaviour
 {
@@ -9,20 +10,19 @@ public class obstacle : MonoBehaviour
   private bool isGameOver = false;
 
   // JavaScript関数を呼び出す
-  // [DllImport("__Internal")]
-  // private static extern void Motor();
+  [DllImport("__Internal")]
+  private static extern void StartEyeDetection();
 
   void Start()
   {
     gameOverText = GameObject.Find("Canvas").transform.Find("GameOverText").gameObject;
 
-    // JavaScript関数を呼び出す
-    // Motor();
   }
   void OnTriggerEnter(Collider collider)
   {
     if (!isGameOver)
     {
+      StartEyeDetection();
       gameOverText.SetActive(true);
       isGameOver = true;
       Time.timeScale = 0f; // Stop the game

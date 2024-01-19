@@ -149,13 +149,13 @@
       // var data = []; //openクラスの値を入れる
       var obniz = new Obniz("4950-9121");
       var isMoterMoving = false; //モーターを動かさない
-      var go_sec_Count = 0;
+      // var go_sec_Count = 0;
 
       const bufferSize = 20; // バッファのサイズ
       const ringBuffer = new Array(bufferSize).fill(0);  // 初期化
       let currentIndex = 0; // 現在のインデックス
-      var go_sec = Math.floor(Math.random() * (21 - 11) + 10) * 1000; //秒数
-
+      // var go_sec = Math.floor(Math.random() * (21 - 11) + 10) * 1000; //秒数
+      var finishLabel = 0;
    
       obniz.onconnect = async function () {
         button = obniz.wired("Button", { signal: 0, gnd: 2 });
@@ -185,8 +185,7 @@
       const URL_ = "https://teachablemachine.withgoogle.com/models/GMnymkaDG/";
 
       window.onload = function() {
-        setTimeout(init, 10000);
-        
+       init();
       };
 
       // Load the image model and setup the webcam
@@ -227,20 +226,20 @@
           // console.log("opensum" + open_sum);
 
           average = open_sum / bufferSize; //平均
-
+          console.log(average);
           // console.log("平均:" + average);
-          if (go_sec_Count == 0) {
-            setTimeout(function () {
-              if (average >= 0.99) {
-                // console.log("eyeditection 前");
-                eyedetection();
-                average = 0;
-              } else {
-                average = 0;
-              }
-              go_sec_Count = 1;
-            }, go_sec);
-          }
+          // if (go_sec_Count == 0) {
+          //   setTimeout(function () {
+          //     if (average >= 0.99) {
+          //       // console.log("eyeditection 前");
+          //       eyedetection();
+          //       average = 0;
+          //     } else {
+          //       average = 0;
+          //     }
+          //     go_sec_Count = 1;
+          //   }, go_sec);
+          // }
         }
         setInterval(timer, 100);
       }
@@ -259,10 +258,10 @@
         prediction[0].className = "Close";
         prediction[1].className = "Open";
 
-        // for (let i = 0; i < maxPredictions; i++) {
-        //   const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-        //   // labelContainer.childNodes[i].innerHTML = classPrediction;
-        // }
+        for (let i = 0; i < maxPredictions; i++) {
+          const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+          labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
 
         // get the best prediction
         let max_id = 0;
@@ -286,8 +285,9 @@
       }
 
       function eyedetection() { //点眼する
-
+        console.log("gahahaha");
         if (isMoterMoving == false) {
+          console.log("tenngann");
           motor01.forward();
           motor02.forward();
           isMoterMoving = true;
@@ -302,13 +302,27 @@
 
 
       window.addEventListener('message', function(event) {
-                Hello(event.data);
-              }, false);
-      function Hello(message){
-        window.alert(message);
+
+        StartEyeDetection(event.data);
+      }, false);
+
+      function StartEyeDetection(message){
+        // window.alert(message);
         console.log(message);
         //ここに、Unityから呼び出されてやりたいことを書く。噴射したりとか。
+        while(finishLabel == 0) {
+          if (average >= 0.99) {
+            console.log("eyeditection 前");
+            eyedetection();
+            average = 0;
+            finishLabel = 1;
+          } else {
+            console.log("終わってない");
+            average = 0;
+          }    
+        } 
       }
+      
     </script>
   </body>
 </html>
