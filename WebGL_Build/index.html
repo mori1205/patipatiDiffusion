@@ -184,12 +184,14 @@
             gameInstance.SendMessage('SceneChanger', 'obstacle_penalty');
 
           } 
-          // ダイヤルが押し込まれた場合
-          dial.onpress = () => {
-            console.log("Dial pressed!");
+         
+        };
+         // ダイヤルが押し込まれた場合
+        obniz.switch.onchange = function(state) {
+          if (state === "push") {
+            console.log("報酬");
             gameInstance.SendMessage('SceneChanger', 'obstacle_reward');
-            // ここにダイアルが押し込まれたときのアクションを追加
-          };
+          }
         };
 
         obniz.display.clear();
