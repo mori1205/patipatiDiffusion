@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/ChangeScene.unity
+    guid: d5a061c0cae404b178fc27b13be39fb4
+  - enabled: 1
     path: Assets/Scenes/obstacle_penalty.unity
     guid: 9affc731889bf4a30976d084143910cc
+  - enabled: 1
+    path: Assets/Scenes/obstacle_reward.unity
+    guid: 0b28f0e98038a4ce584e42911c6bf19d
   m_configObjects: {}
