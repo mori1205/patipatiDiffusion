@@ -8,8 +8,13 @@ public class SceneChanger : MonoBehaviour
   bool penalty = false;
   bool reward = false;
 
+  // void Start() {
+  //   Debug.Log("")
+  // }
+
   void Update()
   {
+    Debug.Log("");
     if (penalty == true || Input.GetKey(KeyCode.Q))
     {
       SceneManager.LoadScene("obstacle_penalty", LoadSceneMode.Single);

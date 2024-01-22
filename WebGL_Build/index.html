@@ -141,7 +141,6 @@
 
       let model, webcam, labelContainer, maxPredictions;
       var motor01, motor02;
-      let dial; //obnizダイヤル
       var button;
       var pressed;
       var count = 0; //一定時間に目を開いた回数
@@ -159,7 +158,6 @@
    
       obniz.onconnect = async function () {
         button = obniz.wired("Button", { signal: 0, gnd: 2 });
-        dial = obniz.wired("Dial", { signal: 0, vcc: 1, gnd: 2 });
         motor01 = obniz.wired("DCMotor", { forward: 4, back: 6 });
         motor02 = obniz.wired("DCMotor", { forward: 8, back: 10 });
         motor01.power(100); // 25
@@ -175,22 +173,15 @@
           }
         };
 
-        dial.onchange = (position) => {
-          console.log("Dial position: " + position);
-
-          // ダイヤルが左に倒された場合（仮定: 0が左端の最小値）
-          if (position < 100) {
-            // 信号を送信する処理を追加
-            gameInstance.SendMessage('SceneChanger', 'obstacle_penalty');
-
-          } 
-         
-        };
-         // ダイヤルが押し込まれた場合
         obniz.switch.onchange = function(state) {
           if (state === "push") {
             console.log("報酬");
             gameInstance.SendMessage('SceneChanger', 'obstacle_reward');
+          }else if (state === "left"){
+            console.log("penalty");
+            gameInstance.SendMessage('SceneChanger', 'obstacle_penalty');
+          }else if (state === "right"){
+            // gameInstance.SendMessage('SceneChanger', 'obstacle_penalty');
           }
         };
 
