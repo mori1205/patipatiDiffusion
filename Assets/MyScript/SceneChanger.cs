@@ -17,12 +17,12 @@ public class SceneChanger : MonoBehaviour
     Debug.Log("");
     if (penalty == true || Input.GetKey(KeyCode.Q))
     {
-      SceneManager.LoadScene("obstacle_penalty", LoadSceneMode.Single);
+      SceneManager.LoadScene("Penalty", LoadSceneMode.Single);
     }
 
     if (reward == true || Input.GetKey(KeyCode.W))
     {
-      SceneManager.LoadScene("obstacle_reward", LoadSceneMode.Single);
+      SceneManager.LoadScene("Reward", LoadSceneMode.Single);
     }
   }
   public void obstacle_penalty()

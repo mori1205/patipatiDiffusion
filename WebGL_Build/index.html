@@ -165,10 +165,8 @@
 
         button.onchange = function (pressed) {
           if (pressed) {
-           
             gameInstance.SendMessage('Player', 'PerformJump');
           } else {
-            
             gameInstance.SendMessage('Player', 'StopJump');
           }
         };
@@ -177,9 +175,11 @@
           if (state === "push") {
             console.log("報酬");
             gameInstance.SendMessage('SceneChanger', 'obstacle_reward');
+
           }else if (state === "left"){
             console.log("penalty");
             gameInstance.SendMessage('SceneChanger', 'obstacle_penalty');
+            
           }else if (state === "right"){
             // gameInstance.SendMessage('SceneChanger', 'obstacle_penalty');
           }
