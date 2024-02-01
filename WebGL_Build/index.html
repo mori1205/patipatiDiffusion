@@ -18,12 +18,6 @@
 
   </head>
   <body>
-    <!-- <h3>TM2Unity</h3> -->
-    
-    <!-- <input type="button" value="ボタン" onclick="onClick()" /> -->
-    
-    <!-- <button id="start" onclick="init()">Start</button> -->
-
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -221,7 +215,7 @@
         window.requestAnimationFrame(loop);
 
         // append elements to the DOM
-        document.getElementById("webcam-container").appendChild(webcam.canvas); //カメラを表示
+        // document.getElementById("webcam-container").appendChild(webcam.canvas); //カメラを表示
         labelContainer = document.getElementById("label-container");
         for (let i = 0; i < maxPredictions; i++) { // and class labels
           labelContainer.appendChild(document.createElement("div"));
@@ -269,10 +263,10 @@
         prediction[0].className = "Close";
         prediction[1].className = "Open";
 
-        for (let i = 0; i < maxPredictions; i++) {
-          const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-          labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
+        // for (let i = 0; i < maxPredictions; i++) {
+        //   const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+        //   labelContainer.childNodes[i].innerHTML = classPrediction;
+        // }
 
         // get the best prediction
         let max_id = 0;

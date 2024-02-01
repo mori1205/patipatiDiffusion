@@ -25,7 +25,7 @@ public class ScoreManeger_Obstacle : MonoBehaviour
 
     if (score >= 15)
     {
-      StartEyeDetection();
+      // StartEyeDetection();
       Time.timeScale = 0f; // Stop the game
     }
   }
