@@ -9,8 +9,8 @@ public class ScoreManeger_Reward : MonoBehaviour
   private Text scoreText;
   public int score = 0;
 
-  // [DllImport("__Internal")]
-  // private static extern void StartEyeDetection();
+  [DllImport("__Internal")]
+  private static extern void StartEyeDetection();
 
   // Start is called before the first frame update
   void Start()
@@ -24,9 +24,10 @@ public class ScoreManeger_Reward : MonoBehaviour
   {
     scoreText.text = score.ToString();
 
-    // if (score >= 15)
-    // {
-    //   StartEyeDetection();
-    // }
+    if (score >= 15)
+    {
+      StartEyeDetection();
+      Time.timeScale = 0f; // Stop the game
+    }
   }
 }
