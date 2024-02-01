@@ -7,8 +7,8 @@ public class CoinManeger_Obstacle : MonoBehaviour
   [SerializeField] int point = 1;
   private GameObject scoreText;
   private ScoreManeger_Obstacle scoreManeger;
-  [DllImport("__Internal")]
-  private static extern void StartEyeDetection();
+  // [DllImport("__Internal")]
+  // private static extern void StartEyeDetection();
 
   private void Start()
   {
