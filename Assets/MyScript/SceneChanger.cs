@@ -7,6 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
   bool penalty = false;
   bool reward = false;
+  bool Obstacle = false;
 
   // void Start() {
   //   Debug.Log("")
@@ -24,6 +25,11 @@ public class SceneChanger : MonoBehaviour
     {
       SceneManager.LoadScene("Reward", LoadSceneMode.Single);
     }
+    if (Obstacle == true || Input.GetKey(KeyCode.E))
+    {
+      SceneManager.LoadScene("Obstacle", LoadSceneMode.Single);
+    }
+
   }
   public void obstacle_penalty()
   {
@@ -33,5 +39,10 @@ public class SceneChanger : MonoBehaviour
   public void obstacle_reward()
   {
     reward = true;
+  }
+
+  public void obstacle()
+  {
+    Obstacle = true;
   }
 }

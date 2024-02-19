@@ -50,8 +50,10 @@ public class CharacterControl : MonoBehaviour
     }
 
     // 自動で前進する
+    moveDirection.x = 0f;
     moveDirection.z = moveSpeed;
 
+    transform.rotation = Quaternion.identity;
     moveDirection.y -= gravity * Time.deltaTime;
 
     controller.Move(moveDirection * Time.deltaTime);

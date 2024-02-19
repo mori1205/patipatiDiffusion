@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 public class obstacle_reward : MonoBehaviour
 {
   GameObject FightText; // Assign the GameOverText object in the Inspector
-  private bool isFight = false;
+  // private bool isFight = false;
 
   // JavaScript関数を呼び出す
   // [DllImport("__Internal")]
@@ -18,22 +18,20 @@ public class obstacle_reward : MonoBehaviour
     FightText = GameObject.Find("Canvas").transform.Find("FightText").gameObject;
 
   }
-  void OnTriggerEnter(Collider collider)
-  {
-    if (!isFight && collider.gameObject.tag == "Player")
-    {
-      // StartEyeDetection();
-      FightText.SetActive(true);
-      isFight = true;
-      // Time.timeScale = 0f; // Stop the game
-    }
-  }
-  void OnTriggerExit(Collider collider)
+  void OnCollisionEnter(Collision collider)
   {
     if (collider.gameObject.tag == "Player")
     {
-      isFight = false;
-      FightText.SetActive(false);
+      // StartEyeDetection();
+      FightText.SetActive(true);
+      StartCoroutine(DeactivateFightText());
     }
+  }
+  
+
+  IEnumerator DeactivateFightText()
+  {
+    yield return new WaitForSeconds(1); // Change the delay time as needed
+    FightText.SetActive(false);
   }
 }

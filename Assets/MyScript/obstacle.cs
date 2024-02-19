@@ -10,23 +10,26 @@ public class obstacle : MonoBehaviour
   private bool isGameOver = false;
 
   // JavaScript関数を呼び出す
-  [DllImport("__Internal")]
-  private static extern void StartEyeDetection();
+  // [DllImport("__Internal")]
+  // private static extern void StartEyeDetection();
 
   void Start()
   {
-    gameOverText = GameObject.Find("Canvas").transform.Find("GameOverText").gameObject;
+    // gameOverText = GameObject.Find("Canvas").transform.Find("GameOverText").gameObject;
 
   }
-  void OnTriggerEnter(Collider collider)
+  void OnCollision(Collider collider)
   {
-    if (!isGameOver)
-    {
-      StartEyeDetection();
-      gameOverText.SetActive(true);
-      isGameOver = true;
-      Time.timeScale = 0f; // Stop the game
-    }
+    // if (!isGameOver)
+    // {
+    //   StartEyeDetection();
+    //   gameOverText.SetActive(true);
+    //   isGameOver = true;
+    //   Time.timeScale = 0f; // Stop the game
+    // }
+    // gameOverText.SetActive(true);
+    Debug.Log("!!!!");
+    
   }
 
 }

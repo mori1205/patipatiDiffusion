@@ -18,14 +18,14 @@ public class obstacle_penalty : MonoBehaviour
     gameOverText = GameObject.Find("Canvas").transform.Find("GameOverText").gameObject;
 
   }
-  void OnTriggerEnter(Collider collider)
+  void OnCollision(Collider collider)
   {
     if (!isGameOver)
     {
       StartEyeDetection();
       gameOverText.SetActive(true);
       isGameOver = true;
-      Time.timeScale = 0f; // Stop the game
+      // Time.timeScale = 0f; // Stop the game
     }
   }
 
