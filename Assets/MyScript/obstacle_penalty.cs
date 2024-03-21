@@ -6,27 +6,34 @@ using System.Runtime.InteropServices;
 
 public class obstacle_penalty : MonoBehaviour
 {
-  GameObject gameOverText; // Assign the GameOverText object in the Inspector
-  private bool isGameOver = false;
+  GameObject GameOverText; // Assign the GameOverText object in the Inspector
+  // private bool isFight = false;
 
   // JavaScript関数を呼び出す
-  [DllImport("__Internal")]
-  private static extern void StartEyeDetection();
+  // [DllImport("__Internal")]
+  // private static extern void StartEyeDetection();
 
   void Start()
   {
-    gameOverText = GameObject.Find("Canvas").transform.Find("GameOverText").gameObject;
+    // Debug.Log("gameover");
+    GameOverText = GameObject.Find("Canvas").transform.Find("GameOverText").gameObject;
 
   }
-  void OnCollision(Collider collider)
+  void OnCollisionEnter(Collision collider)
   {
-    if (!isGameOver)
+    if (collider.gameObject.tag == "Player")
     {
-      StartEyeDetection();
-      gameOverText.SetActive(true);
-      isGameOver = true;
-      // Time.timeScale = 0f; // Stop the game
+      // StartEyeDetection();
+      Debug.Log("gameover");
+      GameOverText.SetActive(true);
+      // StartCoroutine(DeactivateFightText());
     }
   }
+  
 
+  // IEnumerator DeactivateFightText()
+  // {
+  //   yield return new WaitForSeconds(1); // Change the delay time as needed
+  //   FightText.SetActive(false);
+  // }
 }
