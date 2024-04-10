@@ -13,7 +13,6 @@ public class Goal : MonoBehaviour
 
   AudioSource audioSource;
 
-  
   void Start()
   {
     goalText = GameObject.Find("Canvas").transform.Find("GoalText").gameObject;
@@ -26,18 +25,20 @@ public class Goal : MonoBehaviour
     {
       audioSource.PlayOneShot(audioSource.clip);
       goalText.SetActive(true);
-      StartEyeDetection();
+
+        StartEyeDetection();
+      
       Quit();
     }
   }
 
-  void Quit() 
+  void Quit()
   {
     // isGoal = true;
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
       UnityEditor.EditorApplication.isPlaying = false;
-    #else
-      Application.Quit();
-    #endif 
+#else
+    Application.Quit();
+#endif
   }
 }

@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 4236603738389183282}
   - component: {fileID: 3426551545253624076}
   - component: {fileID: 3046516436252132895}
-  - component: {fileID: 184407917135892290}
-  - component: {fileID: -2105249642216753892}
+  - component: {fileID: -6400324751311587415}
   m_Layer: 0
   m_Name: Diamondo
   m_TagString: Untagged
@@ -126,27 +125,14 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 911b2aca4190de843ba6fc029bf3734d, type: 3}
---- !u!114 &184407917135892290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8290708527518958967}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982d779dc9abb48728715b27c3d9c309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  point: 1
---- !u!114 &-2105249642216753892
+--- !u!114 &-6400324751311587415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8290708527518958967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a159989018404ddf821b1cf45205558, type: 3}
+  m_Script: {fileID: 11500000, guid: 982d779dc9abb48728715b27c3d9c309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   point: 1

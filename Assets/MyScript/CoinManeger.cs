@@ -20,9 +20,9 @@ public class CoinManeger : MonoBehaviour
     transform.Rotate(new Vector3(0, 0, 0.5f)); //コインを回転
   }
 
-  void OnTriggerEnter(Collider other)
+  void OnCollisionEnter(Collision collision)
   {
-    if (other.gameObject.CompareTag("Player"))
+    if (collision.gameObject.tag == "Player")
     {
       GetScore();
     }
@@ -32,6 +32,6 @@ public class CoinManeger : MonoBehaviour
   {
     scoreManeger.score = scoreManeger.score + point;
     //コインを消滅
-    Destroy(this.gameObject);
+    Destroy(gameObject);
   }
 }

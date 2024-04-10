@@ -6,12 +6,12 @@ public class CoinManeger_Reward : MonoBehaviour
 {
   [SerializeField] int point = 1;
   private GameObject scoreText;
-  private ScoreManeger_Reward scoreManeger;
+  private ScoreManeger scoreManeger;
 
   private void Start()
   {
     scoreText = GameObject.Find("ScoreText");
-    scoreManeger = scoreText.GetComponent<ScoreManeger_Reward>();
+    scoreManeger = scoreText.GetComponent<ScoreManeger>();
   }
 
   // Update is called once per frame
@@ -20,9 +20,9 @@ public class CoinManeger_Reward : MonoBehaviour
     transform.Rotate(new Vector3(0, 0, 0.5f)); //コインを回転
   }
 
-  void OnTriggerEnter(Collider other)
+  void OnCollisionEnter(Collision collision)
   {
-    if (other.gameObject.CompareTag("Player"))
+    if (collision.gameObject.tag == "Player")
     {
       GetScore();
     }
@@ -32,6 +32,6 @@ public class CoinManeger_Reward : MonoBehaviour
   {
     scoreManeger.score = scoreManeger.score + point;
     //コインを消滅
-    Destroy(this.gameObject);
+    Destroy(gameObject);
   }
 }

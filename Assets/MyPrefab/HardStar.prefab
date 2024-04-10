@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3560704728284041735}
   - component: {fileID: 3942538596094412054}
   - component: {fileID: 1559128579940579127}
-  - component: {fileID: 5593033221575413636}
   - component: {fileID: -1662604341713047984}
+  - component: {fileID: 7210159379759908666}
   m_Layer: 0
   m_Name: HardStar
   m_TagString: Untagged
@@ -110,19 +110,6 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
---- !u!114 &5593033221575413636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967937632389590681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982d779dc9abb48728715b27c3d9c309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  point: 5
 --- !u!64 &-1662604341713047984
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -138,10 +125,23 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9d0e73dbf5dfc6e4e800cbe52651ac4d, type: 3}
+--- !u!114 &7210159379759908666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967937632389590681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982d779dc9abb48728715b27c3d9c309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  point: 5

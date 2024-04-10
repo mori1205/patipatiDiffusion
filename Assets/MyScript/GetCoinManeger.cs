@@ -15,9 +15,9 @@ public class GetCoinManeger : MonoBehaviour
   {
 
   }
-  void OnTriggerEnter(Collider other)
+  void OnCollisionEnter(Collision other)
   {
-    if (other.CompareTag("Coin"))
+    if (other.gameObject.CompareTag("Coin"))
     {
       Destroy(other.gameObject); // コインを破壊する
     }
