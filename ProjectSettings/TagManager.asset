@@ -8,6 +8,8 @@ TagManager:
   - Coin
   - obstacle
   - GOAL
+  - mist
+  - Mist
   layers:
   - Default
   - TransparentFX

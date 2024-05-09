@@ -8,8 +8,8 @@ public class Goal : MonoBehaviour
 {
   GameObject goalText;
   private bool isGoal = false;
-  [DllImport("__Internal")]
-  private static extern void StartEyeDetection();
+  // [DllImport("__Internal")]
+  // private static extern void StartEyeDetection();
 
   AudioSource audioSource;
 
@@ -26,8 +26,8 @@ public class Goal : MonoBehaviour
       audioSource.PlayOneShot(audioSource.clip);
       goalText.SetActive(true);
 
-        StartEyeDetection();
-      
+      // StartEyeDetection();
+
       Quit();
     }
   }
