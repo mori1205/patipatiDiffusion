@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2403043103477804631}
   - component: {fileID: 7159675586902786610}
   - component: {fileID: 3154162771658246381}
-  - component: {fileID: 626331094211650798}
   m_Layer: 0
   m_Name: BigPenalty
   m_TagString: obstacle
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77fd486f93ed14a869eb9fa6e4169650, type: 2}
+  - {fileID: 2100000, guid: d296a6bc99c62fd47af4bf2dbf16fd76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,15 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &626331094211650798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945070925838345513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34fcbe1a97c694f268fdeaa392082fd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
