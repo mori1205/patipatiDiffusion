@@ -20,9 +20,9 @@ public class CoinManeger : MonoBehaviour
     transform.Rotate(new Vector3(0, 0, 0.5f)); //コインを回転
   }
 
-  void OnCollisionEnter(Collision collision)
+  void OnTriggerEnter(Collider collider)
   {
-    if (collision.gameObject.tag == "Player")
+    if (collider.CompareTag("Player"))
     {
       GetScore();
     }

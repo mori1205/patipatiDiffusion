@@ -48,6 +48,7 @@ public class LifeManager : MonoBehaviour
     {
       GameOverText.SetActive(true);
       StartEyeDetection();
+      Time.timeScale = 0;
     }
   }
 }
