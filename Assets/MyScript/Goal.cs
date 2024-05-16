@@ -15,6 +15,7 @@ public class Goal : MonoBehaviour
 
   private ScoreManeger scoreManeger;
   private GameObject scoreText;
+  public int minScore;
 
 
   void Start()
@@ -31,24 +32,24 @@ public class Goal : MonoBehaviour
     // Debug.Log("gooっっっっc");
     if (collision.gameObject.tag == "Player")
     {
-      audioSource.PlayOneShot(audioSource.clip);
+      audioSource.Play();
       goalText.SetActive(true);
 
-      if (scoreManeger.score >= 20)
+      if (scoreManeger.score >= minScore)
       {
         StartEyeDetection();
       }
-      Quit();
+      // Quit();
     }
   }
 
-  void Quit()
-  {
-    // isGoal = true;
-#if UNITY_EDITOR
-      UnityEditor.EditorApplication.isPlaying = false;
-#else
-    Application.Quit();
-#endif
-  }
+//   void Quit()
+//   {
+//     // isGoal = true;
+// #if UNITY_EDITOR
+//       UnityEditor.EditorApplication.isPlaying = false;
+// #else
+//     Application.Quit();
+// #endif
+//   }
 }
