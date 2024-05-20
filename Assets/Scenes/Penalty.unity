@@ -428,6 +428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1181725346}
     m_Modifications:
+    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1147737159183396278, guid: 011067de05e9e46339c57188e1f61f25, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -483,10 +487,6 @@ PrefabInstance:
     - target: {fileID: 8838351154351807264, guid: 011067de05e9e46339c57188e1f61f25, type: 3}
       propertyPath: m_Name
       value: MiniPenalty
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6187107988429984427, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
@@ -643,6 +643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1404087624}
     m_Modifications:
+    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1147737159183396278, guid: 011067de05e9e46339c57188e1f61f25, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -698,10 +702,6 @@ PrefabInstance:
     - target: {fileID: 8838351154351807264, guid: 011067de05e9e46339c57188e1f61f25, type: 3}
       propertyPath: m_Name
       value: MiniPenalty
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6187107988429984427, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
@@ -3856,6 +3856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1404087624}
     m_Modifications:
+    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1147737159183396278, guid: 011067de05e9e46339c57188e1f61f25, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -3911,10 +3915,6 @@ PrefabInstance:
     - target: {fileID: 8838351154351807264, guid: 011067de05e9e46339c57188e1f61f25, type: 3}
       propertyPath: m_Name
       value: MiniPenalty (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6187107988429984427, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
@@ -5024,6 +5024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6d189f4522c4d46bbb25642891b8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minScore: 0
 --- !u!1001 &1694031121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6431,25 +6432,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4889837239532683494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64f5767cd0d6041448a0980f984aa96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 8330939086405747308}
   aspectVec: {x: 800, y: 480}
---- !u!114 &3616561670168233689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7577560003228081355}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f37639d1558e40deaa9df95f33131ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3705016445342469930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6748,7 +6737,6 @@ GameObject:
   - component: {fileID: 8502987532024756150}
   - component: {fileID: 5097480242325973604}
   - component: {fileID: 8346287530075487422}
-  - component: {fileID: 3616561670168233689}
   - component: {fileID: 8058122127658153654}
   - component: {fileID: 8502987532024756151}
   m_Layer: 0
@@ -6824,9 +6812,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.10822621
+    y: 0.19742268
     width: 1
-    height: 0.7835476
+    height: 0.60515463
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -6860,7 +6848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 20
-  moveSpeed: 3
+  moveSpeed: 0
   jumpTime: 0
 --- !u!54 &8502987532024756150
 Rigidbody:
