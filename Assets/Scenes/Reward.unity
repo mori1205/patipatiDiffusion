@@ -8140,7 +8140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 20
-  moveSpeed: 0
+  moveSpeed: 3
   jumpTime: 0
 --- !u!54 &8502987532024756150
 Rigidbody:

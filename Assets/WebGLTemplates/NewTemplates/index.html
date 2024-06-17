@@ -328,7 +328,7 @@
       function eyedetection() { //点眼する
         console.log("-----");
         if (isMoterMoving == false) {
-          console.log("tenngann");
+          // console.log("tenngann");
           motor01.forward();
           motor02.forward();
           isMoterMoving = true;
@@ -352,12 +352,12 @@
         //ここに、Unityから呼び出されてやりたいことを書く。噴射したりとか。
         while(finishLabel == 0) {
           if (average >= 0.99) {
-            console.log("eyeditection 前");
+            // console.log("eyeditection 前");
             eyedetection();
             average = 0;
             finishLabel = 1;
           } else {
-            console.log("終了前");
+            // console.log("終了前");
             await new Promise(resolve => setTimeout(resolve, 100)); // 100ミリ秒待機
             await predict(); // averageを更新
           }    
