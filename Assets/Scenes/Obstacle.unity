@@ -6006,10 +6006,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1739135808}
     m_Modifications:
-    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1147737159183396278, guid: e0702310efd8b4394a0ec4fd1f2ad909, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -6065,6 +6061,10 @@ PrefabInstance:
     - target: {fileID: 8838351154351807264, guid: e0702310efd8b4394a0ec4fd1f2ad909, type: 3}
       propertyPath: m_Name
       value: MiniObstaclec3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6187107988429984427, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
@@ -6617,10 +6617,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1739135808}
     m_Modifications:
-    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1147737159183396278, guid: e0702310efd8b4394a0ec4fd1f2ad909, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -6676,6 +6672,10 @@ PrefabInstance:
     - target: {fileID: 8838351154351807264, guid: e0702310efd8b4394a0ec4fd1f2ad909, type: 3}
       propertyPath: m_Name
       value: MiniObstacle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6187107988429984427, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
@@ -8013,10 +8013,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1077118091}
     m_Modifications:
-    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1147737159183396278, guid: e0702310efd8b4394a0ec4fd1f2ad909, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -8072,6 +8068,10 @@ PrefabInstance:
     - target: {fileID: 8838351154351807264, guid: e0702310efd8b4394a0ec4fd1f2ad909, type: 3}
       propertyPath: m_Name
       value: MiniObstacle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620088119285096498, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6187107988429984427, guid: 27bb446e33dc84a4894c0e96a5db6d0e, type: 3}
@@ -8517,7 +8517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 20
-  moveSpeed: 0
+  moveSpeed: 3
   jumpTime: 0
 --- !u!54 &8502987532024756150
 Rigidbody:
