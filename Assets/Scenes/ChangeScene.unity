@@ -581,9 +581,7 @@ MonoBehaviour:
     Button
 
 
-    Obstacle
-
-'
+    Hindrance'
 --- !u!222 &945470879
 CanvasRenderer:
   m_ObjectHideFlags: 0
